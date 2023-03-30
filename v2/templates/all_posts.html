@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block container_class %}videos-forms-post{% endblock %}
+
+{% block content %}
+<div class="content">
+  <div class="container">
+    <div class="row post-grid">
+      {% for post in posts %}
+        <li class="col-s-4" data-post-id="{{ post.id }}">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.body[:70] }}...</p>
+          <p class="fa fa-comment push-left"> {{ post.comments|length }}</p>
+          <p class="fa fa-heart push-right"> {{ post.likes }}</p>
+        </li>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

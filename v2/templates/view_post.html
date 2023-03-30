@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block container_class %}videos-forms-post{% endblock %}
+
+{% if request.path == '/' %}
+    <!-- This is the main page -->
+{% else %}
+    <!-- This is not the main page -->
+{% endif %}
+{% block content %}
+<div ng-controller="BlogController as blog">
+  <h2 class="ng-binding">{{ post.title }}</h2>
+  {% if post.image %}
+  <img src="{{ post.image }}" alt="{{ post.title }}" class="img-fluid">
+  {% endif %}
+  <cite class="ng-binding">by {{ post.author }} on {{ post.created_on.strftime('%Y-%m-%d %H:%M:%S') }}</cite>
+  <div class="post-body">
+    <p>{{ post.body }}</p>
+  </div>
+  
+  <div class="comments">
+    <label>Likes: </label>
+    <span class="like-count">{{ post.likes }}</span>
+    <form method="POST" action="{{ url_for('like_post', post_id=post.id) }}" style="display:inline;">
+        <button type="submit" class="fa fa-heart ng-binding" id="like-button"></button>
+      </form>
+    <ul>
+      {% for comment in post.comments %}
+      <li>
+        "{{ comment.body }}"
+        <cite>- <b>{{ comment.author }}</b></cite>
+      </li>
+      {% endfor %}
+    </ul>
+    
+    {% if current_user.is_authenticated %}
+    <form id="comment-form-{{ post.id }}" name="commentForm" novalidate>      
+      <h4>Add Comment</h4>
+      <textarea name="body" id="comment-body-{{ post.id }}" cols="30" rows="10" required></textarea>
+      <label for="">by:</label>
+      <input type="text" name="author" id="comment-author-{{ post.id }}" required placeholder="Name">
+      <input type="submit" value="Submit" ng-click="blog.addComment(post.id)"> <!-- Use ng-click instead of ng-submit -->
+    </form>   
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

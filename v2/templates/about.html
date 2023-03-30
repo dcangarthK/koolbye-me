@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% if request.path == '/' %}
+    <!-- This is the main page -->
+{% else %}
+    <!-- This is not the main page -->
+{% endif %}
+{% block content %}
+    <h1 class="mb-4">About Scam Alert</h1>
+    <p>Scam Alert is a community-driven website dedicated to alerting people about the latest scams.</p>
+{% endblock %}

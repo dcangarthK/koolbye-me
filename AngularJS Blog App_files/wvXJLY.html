@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+  <meta charset="UTF-8">
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+
+
+
+  
+  <title>CodePen - AngularJS Blog App</title>
+  <script src="wvXJLY_data/modernizr.min.js" type="text/javascript"></script>
+
+<link href="wvXJLY_data/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="wvXJLY_data/normalize.min.css">
+
+  <link rel="stylesheet" href="wvXJLY_data/responsive.css">
+  
+<style>
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 18px;
+}
+.topbar {
+  background: #79B9D2;
+  color: white;
+  width: 100%;
+  z-index: 9999;
+  padding: 5px 20px;
+}
+.topbar h1 {
+  cursor: pointer;
+}
+.topbar nav {
+  margin-top: 25px;
+}
+.topbar nav ul {
+  padding: 0;
+  margin: 0;
+}
+.topbar nav ul li {
+  display: inline-block;
+  padding: 10px;
+}
+.topbar nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+ul.post-grid {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+ul.post-grid li {
+  padding: 20px;
+  cursor: pointer;
+  transition: background linear 0.5s;
+  border-bottom: 1px solid #3a8bab;
+}
+ul.post-grid li:hover {
+  background: #3a8bab;
+  color: white;
+}
+ul.post-grid li:hover h3 {
+  color: white;
+}
+.content {
+  width: 100%;
+  position: relative;
+  padding: 20px 40px 20px;
+}
+h2,
+h3 {
+  color: #3a8bab;
+}
+.post {
+  transition: 0.5s linear all;
+  opacity: 1;
+  padding-bottom: 30px;
+}
+.post cite {
+  display: inline-block;
+  padding: 10px 0;
+}
+.comments ul {
+  margin: 0;
+  padding: 0;
+}
+.comments ul li {
+  list-style-type: none;
+  padding: 20px 5px;
+  border-bottom: 1px #79B9D2 solid;
+}
+.post.ng-hide {
+  opacity: 0;
+}
+.post.ng-hide-add,
+.post.ng-hide-remove {
+  display: block!important;
+}
+form {
+  width: 100%;
+}
+input,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.1em;
+}
+.ng-invalid.ng-dirty {
+  border-color: red;
+}
+.ng-valid.ng-dirty {
+  border-color: green;
+}
+img {
+  max-width: 100%;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no" ng-app="blogApp" class="ng-scope">
+  
+  
+  <div ng-controller="BlogController as blog" class="ng-scope">
+      <div class="topbar">
+        <div class="container">
+          <div class="row">
+            <div class="col-s-4">
+              <h1 ng-click="blog.selectTab('blog')" class="push-left ng-binding">AngularJS Blog App</h1>
+            </div>
+            <div class="offset-s-4 col-s-4">
+              <nav role="navigation" class="push-right">
+                <ul>
+                  <li><a href="#" ng-click="blog.selectTab('blog')">See All Posts</a></li> //
+                  <li><a href="#" ng-click="blog.selectTab('new')">Add New Post</a></li>
+                </ul>
+              </nav> 
+            </div>
+          </div>
+        </div>
+        
+        
+         
+      </div>
+     
+      
+      <div class="content">
+        <div class="container">
+          <div class="row">
+            <ul class="post-grid ng-hide" ng-show="blog.isSelected('blog')">
+          <!-- ngRepeat: post in blog.posts --><li ng-repeat="post in blog.posts" class="col-s-4 ng-scope reset-s" ng-class="{ 'reset-s' : $index%3==0 }" ng-click="blog.selectTab($index)">
+            <h3 class="ng-binding">dsfgdsfdsf</h3>
+            <p class="ng-binding">dsfdsfsd...</p>
+            <p class="fa fa-comment push-left ng-binding"> 1
+            </p>
+            <p class="fa fa-heart push-right ng-binding"> 11
+            </p>
+          </li><!-- end ngRepeat: post in blog.posts --><li ng-repeat="post in blog.posts" class="col-s-4 ng-scope" ng-class="{ 'reset-s' : $index%3==0 }" ng-click="blog.selectTab($index)">
+            <h3 class="ng-binding">Blog Post One</h3>
+            <p class="ng-binding">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dele...</p>
+            <p class="fa fa-comment push-left ng-binding"> 1
+            </p>
+            <p class="fa fa-heart push-right ng-binding"> 0
+            </p>
+          </li><!-- end ngRepeat: post in blog.posts --><li ng-repeat="post in blog.posts" class="col-s-4 ng-scope" ng-class="{ 'reset-s' : $index%3==0 }" ng-click="blog.selectTab($index)">
+            <h3 class="ng-binding">Blog Post Two</h3>
+            <p class="ng-binding">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dele...</p>
+            <p class="fa fa-comment push-left ng-binding"> 1
+            </p>
+            <p class="fa fa-heart push-right ng-binding"> 0
+            </p>
+          </li><!-- end ngRepeat: post in blog.posts --><li ng-repeat="post in blog.posts" class="col-s-4 ng-scope reset-s" ng-class="{ 'reset-s' : $index%3==0 }" ng-click="blog.selectTab($index)">
+            <h3 class="ng-binding">Blog Post Three</h3>
+            <p class="ng-binding">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dele...</p>
+            <p class="fa fa-comment push-left ng-binding"> 1
+            </p>
+            <p class="fa fa-heart push-right ng-binding"> 0
+            </p>
+          </li><!-- end ngRepeat: post in blog.posts --><li ng-repeat="post in blog.posts" class="col-s-4 ng-scope" ng-class="{ 'reset-s' : $index%3==0 }" ng-click="blog.selectTab($index)">
+            <h3 class="ng-binding">Blog Post Four</h3>
+            <p class="ng-binding">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dele...</p>
+            <p class="fa fa-comment push-left ng-binding"> 1
+            </p>
+            <p class="fa fa-heart push-right ng-binding"> 0
+            </p>
+          </li><!-- end ngRepeat: post in blog.posts -->
+        </ul>
+        <!-- ngRepeat: post in blog.posts --><div class="post ng-scope ng-hide" ng-repeat="post in blog.posts" ng-show="blog.isSelected($index)">
+          <div>
+            
+            <h2 class="ng-binding">dsfgdsfdsf</h2>
+            <img ng-show="" class="ng-hide">
+            <cite class="ng-binding">by sdfs on Mar 27, 2023</cite>
+            <div class="post-body">
+             <!-- ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               dsfdsfsd
+             </p><!-- end ngRepeat: paragraph in post.body --> 
+            </div>
+            
+            <div class="comments ng-scope" ng-controller="CommentController as commentCtrl">
+              <button class="fa fa-heart ng-binding" ng-click="post.likes = post.likes+1"> 11</button>
+              <h3>Comments</h3>
+              <ul>
+               <!-- ngRepeat: comment in post.comments --><li ng-repeat="comment in post.comments" class="ng-binding ng-scope">
+                 "bcvndfgb"
+                 <cite>- <b class="ng-binding">fbcvfg</b></cite>
+               </li><!-- end ngRepeat: comment in post.comments -->
+              </ul>
+              <form name="commentForm" ng-submit="commentForm.$valid &amp;&amp; commentCtrl.addComment(post)" novalidate="" class="ng-dirty ng-submitted ng-invalid ng-invalid-required">
+              
+                
+                <h4>Add Comment</h4>
+                  <textarea ng-model="commentCtrl.comment.body" cols="30" rows="10" required="" class="ng-dirty ng-touched ng-invalid ng-invalid-required"></textarea>
+                <label for="">by:</label>
+                  <input type="text" ng-model="commentCtrl.comment.author" required="" placeholder="Name" class="ng-dirty ng-touched ng-invalid ng-invalid-required">
+                  
+                  <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+      </div><!-- end ngRepeat: post in blog.posts --><div class="post ng-scope ng-hide" ng-repeat="post in blog.posts" ng-show="blog.isSelected($index)">
+          <div>
+            
+            <h2 class="ng-binding">Blog Post One</h2>
+            <img src="wvXJLY_data/600.jpg" ng-show="http://placekitten.com/g/2000/600">
+            <cite class="ng-binding">by Nick Moreton on Aug 20, 2014</cite>
+            <div class="post-body">
+             <!-- ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+ Dolorem deleniti quae, neque libero voluptate maiores ullam unde 
+voluptatem assumenda velit dolores impedit quis qui! Neque, cupiditate 
+labore nulla? Atque, tenetur.
+             </p><!-- end ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Numquam nobis nam voluptas blanditiis eveniet in quasi 
+possimus voluptatem temporibus doloremque delectus dolorum, voluptatum 
+laborum aut dolorem? In rerum necessitatibus soluta incidunt nihil 
+numquam fugit quas pariatur dolores nesciunt?
+             </p><!-- end ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Quibusdam placeat quisquam iure repellendus ad in, nihil 
+numquam quaerat, facere alias illo. Tempora perferendis incidunt, 
+ratione eveniet esse earum, corporis sit? Modi enim commodi odio placeat
+ minus, error id?
+             </p><!-- end ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Corrupti voluptates asperiores ratione laudantium, 
+eveniet molestiae possimus deleniti officia, incidunt quae et. Amet, 
+ducimus eum ipsa reprehenderit ad, et nihil, veritatis ea doloremque ab 
+placeat dolore impedit, quia eius.
+             </p><!-- end ngRepeat: paragraph in post.body --> 
+            </div>
+            
+            <div class="comments ng-scope" ng-controller="CommentController as commentCtrl">
+              <button class="fa fa-heart ng-binding" ng-click="post.likes = post.likes+1"> 0</button>
+              <h3>Comments</h3>
+              <ul>
+               <!-- ngRepeat: comment in post.comments --><li ng-repeat="comment in post.comments" class="ng-binding ng-scope">
+                 "Lorem ipsum dolor sit amet, consectetur adipisicing 
+elit. Dignissimos possimus porro earum dolor sint fuga laborum velit 
+laudantium distinctio quos sunt veritatis unde inventore, autem ad 
+tenetur voluptatibus mollitia vel!"
+                 <cite>- <b class="ng-binding">trollguy87</b></cite>
+               </li><!-- end ngRepeat: comment in post.comments -->
+              </ul>
+              <form name="commentForm" ng-submit="commentForm.$valid &amp;&amp; commentCtrl.addComment(post)" novalidate="" class="ng-pristine ng-invalid ng-invalid-required">
+              
+                
+                <h4>Add Comment</h4>
+                  <textarea ng-model="commentCtrl.comment.body" cols="30" rows="10" required="" class="ng-pristine ng-untouched ng-invalid ng-invalid-required"></textarea>
+                <label for="">by:</label>
+                  <input type="text" ng-model="commentCtrl.comment.author" required="" placeholder="Name" class="ng-pristine ng-untouched ng-invalid ng-invalid-required">
+                  
+                  <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+      </div><!-- end ngRepeat: post in blog.posts --><div class="post ng-scope ng-hide" ng-repeat="post in blog.posts" ng-show="blog.isSelected($index)">
+          <div>
+            
+            <h2 class="ng-binding">Blog Post Two</h2>
+            <img src="wvXJLY_data/600.jpg" ng-show="http://placekitten.com/g/2000/600">
+            <cite class="ng-binding">by Nick Moreton on Aug 20, 2014</cite>
+            <div class="post-body">
+             <!-- ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+ Dolorem deleniti quae, neque libero voluptate maiores ullam unde 
+voluptatem assumenda velit dolores impedit quis qui! Neque, cupiditate 
+labore nulla? Atque, tenetur.
+             </p><!-- end ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Numquam nobis nam voluptas blanditiis eveniet in quasi 
+possimus voluptatem temporibus doloremque delectus dolorum, voluptatum 
+laborum aut dolorem? In rerum necessitatibus soluta incidunt nihil 
+numquam fugit quas pariatur dolores nesciunt?
+             </p><!-- end ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Quibusdam placeat quisquam iure repellendus ad in, nihil 
+numquam quaerat, facere alias illo. Tempora perferendis incidunt, 
+ratione eveniet esse earum, corporis sit? Modi enim commodi odio placeat
+ minus, error id?
+             </p><!-- end ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Corrupti voluptates asperiores ratione laudantium, 
+eveniet molestiae possimus deleniti officia, incidunt quae et. Amet, 
+ducimus eum ipsa reprehenderit ad, et nihil, veritatis ea doloremque ab 
+placeat dolore impedit, quia eius.
+             </p><!-- end ngRepeat: paragraph in post.body --> 
+            </div>
+            
+            <div class="comments ng-scope" ng-controller="CommentController as commentCtrl">
+              <button class="fa fa-heart ng-binding" ng-click="post.likes = post.likes+1"> 0</button>
+              <h3>Comments</h3>
+              <ul>
+               <!-- ngRepeat: comment in post.comments --><li ng-repeat="comment in post.comments" class="ng-binding ng-scope">
+                 "Lorem ipsum dolor sit amet, consectetur adipisicing 
+elit. Dignissimos possimus porro earum dolor sint fuga laborum velit 
+laudantium distinctio quos sunt veritatis unde inventore, autem ad 
+tenetur voluptatibus mollitia vel!"
+                 <cite>- <b class="ng-binding">trollguy87</b></cite>
+               </li><!-- end ngRepeat: comment in post.comments -->
+              </ul>
+              <form name="commentForm" ng-submit="commentForm.$valid &amp;&amp; commentCtrl.addComment(post)" novalidate="" class="ng-pristine ng-invalid ng-invalid-required">
+              
+                
+                <h4>Add Comment</h4>
+                  <textarea ng-model="commentCtrl.comment.body" cols="30" rows="10" required="" class="ng-pristine ng-untouched ng-invalid ng-invalid-required"></textarea>
+                <label for="">by:</label>
+                  <input type="text" ng-model="commentCtrl.comment.author" required="" placeholder="Name" class="ng-pristine ng-untouched ng-invalid ng-invalid-required">
+                  
+                  <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+      </div><!-- end ngRepeat: post in blog.posts --><div class="post ng-scope ng-hide" ng-repeat="post in blog.posts" ng-show="blog.isSelected($index)">
+          <div>
+            
+            <h2 class="ng-binding">Blog Post Three</h2>
+            <img src="wvXJLY_data/600.jpg" ng-show="http://placekitten.com/g/2000/600">
+            <cite class="ng-binding">by Nick Moreton on Aug 20, 2014</cite>
+            <div class="post-body">
+             <!-- ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+ Dolorem deleniti quae, neque libero voluptate maiores ullam unde 
+voluptatem assumenda velit dolores impedit quis qui! Neque, cupiditate 
+labore nulla? Atque, tenetur.
+             </p><!-- end ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Numquam nobis nam voluptas blanditiis eveniet in quasi 
+possimus voluptatem temporibus doloremque delectus dolorum, voluptatum 
+laborum aut dolorem? In rerum necessitatibus soluta incidunt nihil 
+numquam fugit quas pariatur dolores nesciunt?
+             </p><!-- end ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Quibusdam placeat quisquam iure repellendus ad in, nihil 
+numquam quaerat, facere alias illo. Tempora perferendis incidunt, 
+ratione eveniet esse earum, corporis sit? Modi enim commodi odio placeat
+ minus, error id?
+             </p><!-- end ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Corrupti voluptates asperiores ratione laudantium, 
+eveniet molestiae possimus deleniti officia, incidunt quae et. Amet, 
+ducimus eum ipsa reprehenderit ad, et nihil, veritatis ea doloremque ab 
+placeat dolore impedit, quia eius.
+             </p><!-- end ngRepeat: paragraph in post.body --> 
+            </div>
+            
+            <div class="comments ng-scope" ng-controller="CommentController as commentCtrl">
+              <button class="fa fa-heart ng-binding" ng-click="post.likes = post.likes+1"> 0</button>
+              <h3>Comments</h3>
+              <ul>
+               <!-- ngRepeat: comment in post.comments --><li ng-repeat="comment in post.comments" class="ng-binding ng-scope">
+                 "Lorem ipsum dolor sit amet, consectetur adipisicing 
+elit. Dignissimos possimus porro earum dolor sint fuga laborum velit 
+laudantium distinctio quos sunt veritatis unde inventore, autem ad 
+tenetur voluptatibus mollitia vel!"
+                 <cite>- <b class="ng-binding">trollguy87</b></cite>
+               </li><!-- end ngRepeat: comment in post.comments -->
+              </ul>
+              <form name="commentForm" ng-submit="commentForm.$valid &amp;&amp; commentCtrl.addComment(post)" novalidate="" class="ng-pristine ng-invalid ng-invalid-required">
+              
+                
+                <h4>Add Comment</h4>
+                  <textarea ng-model="commentCtrl.comment.body" cols="30" rows="10" required="" class="ng-pristine ng-untouched ng-invalid ng-invalid-required"></textarea>
+                <label for="">by:</label>
+                  <input type="text" ng-model="commentCtrl.comment.author" required="" placeholder="Name" class="ng-pristine ng-untouched ng-invalid ng-invalid-required">
+                  
+                  <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+      </div><!-- end ngRepeat: post in blog.posts --><div class="post ng-scope ng-hide" ng-repeat="post in blog.posts" ng-show="blog.isSelected($index)">
+          <div>
+            
+            <h2 class="ng-binding">Blog Post Four</h2>
+            <img src="wvXJLY_data/600.jpg" ng-show="http://placekitten.com/g/2000/600">
+            <cite class="ng-binding">by Nick Moreton on Aug 20, 2014</cite>
+            <div class="post-body">
+             <!-- ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+ Dolorem deleniti quae, neque libero voluptate maiores ullam unde 
+voluptatem assumenda velit dolores impedit quis qui! Neque, cupiditate 
+labore nulla? Atque, tenetur.
+             </p><!-- end ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Numquam nobis nam voluptas blanditiis eveniet in quasi 
+possimus voluptatem temporibus doloremque delectus dolorum, voluptatum 
+laborum aut dolorem? In rerum necessitatibus soluta incidunt nihil 
+numquam fugit quas pariatur dolores nesciunt?
+             </p><!-- end ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Quibusdam placeat quisquam iure repellendus ad in, nihil 
+numquam quaerat, facere alias illo. Tempora perferendis incidunt, 
+ratione eveniet esse earum, corporis sit? Modi enim commodi odio placeat
+ minus, error id?
+             </p><!-- end ngRepeat: paragraph in post.body --><p ng-repeat="paragraph in post.body" class="ng-binding ng-scope">
+               Corrupti voluptates asperiores ratione laudantium, 
+eveniet molestiae possimus deleniti officia, incidunt quae et. Amet, 
+ducimus eum ipsa reprehenderit ad, et nihil, veritatis ea doloremque ab 
+placeat dolore impedit, quia eius.
+             </p><!-- end ngRepeat: paragraph in post.body --> 
+            </div>
+            
+            <div class="comments ng-scope" ng-controller="CommentController as commentCtrl">
+              <button class="fa fa-heart ng-binding" ng-click="post.likes = post.likes+1"> 0</button>
+              <h3>Comments</h3>
+              <ul>
+               <!-- ngRepeat: comment in post.comments --><li ng-repeat="comment in post.comments" class="ng-binding ng-scope">
+                 "Lorem ipsum dolor sit amet, consectetur adipisicing 
+elit. Dignissimos possimus porro earum dolor sint fuga laborum velit 
+laudantium distinctio quos sunt veritatis unde inventore, autem ad 
+tenetur voluptatibus mollitia vel!"
+                 <cite>- <b class="ng-binding">trollguy87</b></cite>
+               </li><!-- end ngRepeat: comment in post.comments -->
+              </ul>
+              <form name="commentForm" ng-submit="commentForm.$valid &amp;&amp; commentCtrl.addComment(post)" novalidate="" class="ng-pristine ng-invalid ng-invalid-required">
+              
+                
+                <h4>Add Comment</h4>
+                  <textarea ng-model="commentCtrl.comment.body" cols="30" rows="10" required="" class="ng-pristine ng-untouched ng-invalid ng-invalid-required"></textarea>
+                <label for="">by:</label>
+                  <input type="text" ng-model="commentCtrl.comment.author" required="" placeholder="Name" class="ng-pristine ng-untouched ng-invalid ng-invalid-required">
+                  
+                  <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+      </div><!-- end ngRepeat: post in blog.posts -->
+        <div class="post" ng-show="blog.isSelected('new')">
+          <h2>Add New Post</h2>
+          
+          <form name="postForm" ng-submit=" blog.addPost()" novalidate="" class="ng-dirty ng-submitted ng-invalid ng-invalid-required ng-valid-parse">
+                  <h4>Title</h4>
+                  <input type="text" ng-model="blog.post.title" class="ng-valid ng-dirty ng-touched ng-valid-parse" value="Test">
+                  <h4>Body</h4>
+                  <textarea ng-model="blog.post.body" ng-list="/\n/" rows="10" class="ng-valid ng-dirty ng-touched ng-valid-parse">dasd</textarea>
+                  <label for="">Featured Image URL</label>
+                  <input type="text" ng-model="blog.post.image" placeholder="http://placekitten.com/g/2000/600" class="ng-pristine ng-untouched ng-valid">
+                  <label for="">by:</label>
+                  <input type="text" ng-model="blog.post.author" placeholder="Author Name" required="" class="ng-dirty ng-touched ng-invalid ng-invalid-required">
+                  
+                  <input type="submit" value="Submit">
+                </form>
+          
+            </div>
+            
+          </div>
+        </div>
+        
+    </div>
+  </div>
+  
+  
+
+    <script src="wvXJLY_data/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd3025033.js"></script>
+
+  <script src="wvXJLY_data/angular.min.js"></script>
+<script src="wvXJLY_data/angular-animate.js"></script>
+<script src="wvXJLY_data/jquery-2.1.0.min.js"></script>
+<script src="wvXJLY_data/responsive.js"></script>
+      <script id="rendered-js">
+/*
+
+Simple blog front end demo in order to learn AngularJS - You can add new posts, add comments, and like posts.
+
+*/
+
+(function () {
+  var app = angular.module('blogApp', []);
+
+  app.controller('BlogController', ['$http', function ($http) {
+
+    var blog = this;
+    blog.title = "AngularJS Blog App";
+
+    blog.posts = {};
+    $http.get('https://s3-us-west-2.amazonaws.com/s.cdpn.io/110131/posts_1.json').success(function (data) {
+      blog.posts = data;
+    });
+
+    blog.tab = 'blog';
+
+    blog.selectTab = function (setTab) {
+      blog.tab = setTab;
+      console.log(blog.tab);
+    };
+
+    blog.isSelected = function (checkTab) {
+      return blog.tab === checkTab;
+    };
+
+    blog.post = {};
+    blog.addPost = function () {
+      blog.post.createdOn = Date.now();
+      blog.post.comments = [];
+      blog.post.likes = 0;
+      blog.posts.unshift(this.post);
+      blog.tab = 0;
+      blog.post = {};
+    };
+
+  }]);
+
+  app.controller('CommentController', function () {
+    this.comment = {};
+    this.addComment = function (post) {
+      this.comment.createdOn = Date.now();
+      post.comments.push(this.comment);
+      this.comment = {};
+    };
+  });
+
+})();
+//# sourceURL=pen.js
+    </script>
+
+  
+
+
+</body></html>

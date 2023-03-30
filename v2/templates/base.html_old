@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scams Awareness</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Scams Awareness</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('scam') }}">Add Scam</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                </li>
+            </ul>
+            <div class="my-2 my-lg-0">
+                <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4">
+                <div class="card shadow">
+                    <div class="card-body">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
+</body>
+</html>
+
+######olf blogs###
+<!-- {% extends 'base.html' %}
+
+{% block content %}
+    <h1>Blog</h1>
+    <ul>
+    {% for blog in blogs %}
+        <li><a href="{{ url_for('blog_detail', id=blog.id) }}">{{ blog.title }}</a></li>
+    {% endfor %}
+    </ul>
+
+    {% if current_user.is_authenticated %}
+        <h2>Add New Post</h2>
+        <form method="POST" action="{{ url_for('add_blog') }}">
+            <div>
+                <label>Title:</label>
+                <input type="text" name="title" required>
+            </div>
+            <div>
+                <label>Content:</label>
+                <textarea name="content" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    {% endif %}
+{% endblock %} -->

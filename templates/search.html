@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Search Results</title>
+    <style>
+        img {
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+<h1>Search Results</h1>
+{% if results %}
+    {% for pic in results %}
+        <div>
+            <h3>{{ pic['description'] }}</h3>
+            <img src="data:image/png;base64,{{ pic['picture'] | b64encode }}" alt="{{ pic['description'] }}">
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No results found.</p>
+{% endif %}
+</body>
+</html>

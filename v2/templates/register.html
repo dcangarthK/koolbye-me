@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <form class="login-form sign-up" method="POST" action="{{ url_for('register') }}">
+          {{ form.csrf_token }}
+          <h2>Create login</h2>
+          <div>Use your email for registration</div>
+          <input type="text" class="login-form-input form-control" name="username" id="username" placeholder="Username" value="{{ form.username.data }}" />
+          {{ form.username.errors }}
+          <input type="email" class="login-form-input form-control" name="email" id="email" placeholder="Email" value="{{ form.email.data }}" />
+          {{ form.email.errors }}
+          <input type="password" class="login-form-input form-control" name="password" id="password" placeholder="Password" value="{{ form.password.data }}" />
+          {{ form.password.errors }}
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

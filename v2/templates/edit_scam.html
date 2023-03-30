@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Edit Scam</h1>
+<form method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" name="title" value="{{ scam.title }}" required>
+  </div>
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select class="form-control" id="category" name="category" required>
+      {% for category in categories %}
+      {% if category == scam.category %}
+      <option value="{{ category }}" selected>{{ category }}</option>
+      {% else %}
+      <option value="{{ category }}">{{ category }}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" name="description" rows="5" required>{{ scam.description }}</textarea>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" name="email" value="{{ scam.email }}">
+  </div>
+  <div class="form-group">
+    <label for="phone_number">Phone Number</label>
+    <input type="tel" class="form-control" id="phone_number" name="phone_number" value="{{ scam.phone_number }}">
+  </div>
+  <div class="form-group">
+    <label for="location">Location</label>
+    <input type="text" class="form-control" id="location" name="location" value="{{ scam.location }}">
+  </div>
+  <div class="form-group">
+    <label for="tags">Tags</label>
+    <input type="text" class="form-control" id="tags" name="tags" value="{% for tag in scam.tags %}{{ tag.name }}, {% endfor %}">
+    <small class="form-text text-muted">Separate tags with commas</small>
+  </div>
+  <div class="form-group">
+    <label for="images">Images</label>
+    <input type="file" class="form-control-file" id="images" name="images[]" multiple>
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+{% endblock %}

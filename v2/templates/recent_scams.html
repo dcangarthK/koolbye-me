@@ -1,0 +1,14 @@
+{% for scam in recent_scams %}
+    <div class="chat-vid anim" style="--delay: .4s">
+        <div class="chat-vid__wrapper">
+            {% if scam.image_url %}
+            <img class="chat-vid__img" src="{{ scam.image_url }}">
+            {% endif %}
+            <div class="chat-vid__content">
+                <div class="chat-vid__name">{{ scam.title }}</div>
+                <div class="chat-vid__by">{{ scam.author }}</div>
+                <div class="chat-vid__info">{{ scam.views }} views <span class="seperate"></span>{{ scam.time_ago }}</div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

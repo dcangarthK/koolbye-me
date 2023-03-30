@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Login</h1>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class=flashes>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <!-- <section class="forms-section">
+    <div class="forms">
+      <div class="form-wrapper is-active">
+        <button type="button" class="switcher switcher-login">
+          Sign In
+          <span class="underline"></span>
+        </button>
+        <form class="form form-login" method="POST" action="{{ url_for('user_login') }}">
+          <fieldset>
+            <legend>Please, enter your email and password for login.</legend>
+            <div class="input-block">
+              <label for="login-email">E-mail</label>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+            </div>
+            <div class="input-block">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+          </fieldset>
+          <button type="submit" class="btn-login">Login</button>
+        </form>
+        {% if current_user.is_authenticated %}
+          <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Profile
+            </button>
+            <div class="dropdown-menu" aria-labelledby="profile-dropdown">
+              <a class="dropdown-item" href="{{ url_for('edit_profile') }}">Edit Profile</a>
+              <a class="dropdown-item" href="{{ url_for('delete_profile') }}">Delete Profile</a>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+      <div class="form-wrapper">
+        <button type="button" class="switcher switcher-signup">
+          Sign Up
+          <span class="underline"></span>
+        </button>
+        <form class="form form-signup" method="POST" action="{{ url_for('register') }}">
+          <fieldset>
+            <legend>Please, enter your email, password and password confirmation for sign up.</legend>
+            <div class="input-block">
+              <label for="signup-email">E-mail</label>
+              <input id="signup-email" type="email" name="email" required>
+            </div>
+            <div class="input-block">
+              <label for="signup-password">Password</label>
+              <input id="signup-password" type="password" name="password" required>
+            </div>
+            <div class="input-block">
+              <label for="signup-password-confirm">Confirm password</label>
+              <input id="signup-password-confirm" type="password" name="confirm_password" required>
+            </div>
+          </fieldset>
+          <button type="submit" class="btn-signup">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </section> -->
+  <div id="app">
+    <article>
+      <div class="container1" :class="{'sign-up-active' : signUp}">
+        <div class="overlay-container1">
+          <div class="overlay">
+            <div class="overlay-left">
+              <h2>Welcome Back!</h2>
+              <p>Please login with your personal info</p>
+              <button class="invert" id="signIn" @click="signUp = !signUp">Sign In</button>
+            </div>
+            <div class="overlay-right">
+              <h2>Hello, Friend!</h2>
+              <p>Please enter your personal details</p>
+              <button class="invert" id="signUp" @click="signUp = !signUp">Sign Up</button>
+            </div>
+          </div>
+        </div>
+        <form1 class="sign-up" action="#">
+          <h2>Create login</h2>
+          <div>Use your email for registration</div>
+          <input type="text" class="form1 form-control" placeholder="Name" />
+          <input type="email" class="form1 form-control" placeholder="Email" />
+          <input type="password" class="form1 form-control" placeholder="Password" />
+          <button>Sign Up</button>
+        </form1>
+        <form1 class="sign-in" method="POST"  action="{{ url_for('user_login') }}">
+          <h2>Sign In</h2>
+          <div>Use your account</div>
+          <input type="text" class="form1 form-control" id="username" name="username" placeholder="Email/Username" />
+          <input type="password" class="form1 form-control" id="password" name="password" placeholder="Password" />
+          <a href="#">Forgot your password?</a>
+          <button type="submit">Sign In</button>
+        </form1>
+      </div>
+    </article>
+    </div>
+{% endblock %}

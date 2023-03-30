@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Picture Gallery</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Use a CSS framework like Foundation for better styling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.6.3/css/foundation.min.css" />
+</head>
+<body>
+    <div class="grid-container">
+        <h1>Picture Gallery</h1>
+        <form action="{{ url_for('search_picture') }}" method="POST" enctype="multipart/form-data">
+            <h3>Search for pictures</h3>
+            <label for="picture">Picture:</label>
+            <input type="file" id="picture" name="picture" required>
+            <br><br>
+            <input type="submit" value="Search" class="button">
+        </form>
+        <hr>
+        <h3>Add a picture</h3>
+        <form action="{{ url_for('add_picture') }}" method="POST" enctype="multipart/form-data">
+            <label for="picture">Picture:</label>
+            <input type="file" id="picture" name="picture" required>
+            <br><br>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required>
+            <br><br>
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" required>
+            <br><br>
+            <input type="submit" value="Add" class="button">
+        </form>
+        <hr>
+        <h3>Pictures</h3>
+        <div class="grid-x grid-margin-x small-up-2 medium-up-4 large-up-6">
+            {% for picture in pictures %}
+            <div class="cell">
+                <div class="card">
+                    <img src="data:image/jpeg;base64,{{ picture['picture'] | b64encode }}" alt="{{ picture['description'] }}">
+                    <div class="card-section">
+                        <h4>{{ picture['description'] }}</h4>
+                        <p>Category: {{ picture['category'] }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

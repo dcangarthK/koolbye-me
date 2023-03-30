@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div></div>
+  {% if current_user.is_authenticated and not current_user.is_anonymous %}
+  <form method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input type="text" name="category" id="category" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea name="description" id="description" class="form-control" rows="5" required></textarea>
+    </div>
+    <!-- <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" class=z"form-control">
+    </div> -->
+    <!-- <div class="form-group">
+      <label for="phone_number">Phone Number</label>
+      <input type="tel" name="phone_number" id="phone_number" class="form-control">
+    </div> -->
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input type="text" name="location" id="location" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="tags">Tags (separated by comma)</label>
+      <input type="text" name="tags" id="tags" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="images">Images (max size 2MB)</label>
+      <input type="file" name="images" id="images" class="form-control" multiple>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  {% else %}
+  <div class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">You must be logged in to submit a new scam!</h4>
+    <p>Please click on the "Sign In" dropdown at the top right corner of the page to register, sign in if you have an account, or sign in as an anonymous user.</p>
+  </div>
+  {% endif %}
+  <hr>
+
+
+  <div class="col-md-10">
+    <h2>Latest Tags</h2>
+    <ul>
+      {% for tag in tags %}
+        <li>{{ tag.name }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

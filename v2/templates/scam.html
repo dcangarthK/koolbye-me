@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block container_class %}videos-forms{% endblock %}
+
+{% block content %}
+<div class="form-container">
+  {% if current_user.is_authenticated %}
+  <div class="center-form">
+  <form id="new-scam" action="" method="POST" enctype="multipart/form-data">
+    <h3>New scam</h3>
+    <h4>Fill in this form to alert the community of a scam that you know</h4>
+    <fieldset>
+      <input name="title" id="title" placeholder="Title" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input name="category" id="category" placeholder="Category" type="text" tabindex="2" required>
+    </fieldset>
+    <fieldset>
+      <textarea name="description" id="description" placeholder="Type your Message/Description Here...." tabindex="5" required></textarea>
+    </fieldset>
+    <fieldset>
+      <input name="location" id="location" placeholder="Your Location" type="text" tabindex="3" required>
+    </fieldset>
+    <fieldset>
+      <input name="tags" id="tags" placeholder="Tags" type="text" tabindex="4" required>
+    </fieldset>
+    <fieldset>
+      <input name="images" id="images" placeholder="Images (max size 2MB)" type="file" tabindex="6" multiple>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="new-scam-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+  </form>
+  </div>
+
+  {% else %}
+  <div class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">You must be logged in to submit a new scam!</h4>
+    <p>Please click on the "Sign In" dropdown at the top right corner of the page to register, sign in if you have an account, or sign in as an anonymous user.</p>
+  </div>
+  {% endif %}
+  <hr>
+</div>
+
+
+
+  <div class="chat-container">
+    <div class="chat-stream">
+  <!-- Recent Scams -->
+  <div class="chat-vid__container">
+    <div class="chat-vid__title anim" style="--delay: .3s">Recent Scams</div>
+    {% include 'recent_scams.html' %}
+    <div class="chat-vid__button anim" style="--delay: .6s">See All recent Scams ({{ recent_scams_count }})</div>
+  </div>  
+
+<!-- Tags -->
+<div class="chat-vid__title anim" style="--delay: .3s">Tags</div>
+<div class="video-view">
+  {% for tag in tags %}
+  <a href="{{ url_for('index', tag_id=tag.id) }}">
+    <span class="badge badge-pill badge-primary">{{ tag.name }}</span></a>
+  <!-- <span class="seperate video-seperate"></span>1 week ago -->
+  {% endfor %}
+</div>
+
+</div>
+</div>
+
+{% endblock %}

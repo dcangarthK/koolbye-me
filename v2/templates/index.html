@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for scam in scams %}
+<div class="video anim" style="--delay: .4s">
+  <a href="{{ url_for('scam_detail', scam_id=scam.id) }}" style="text-decoration: none; color: inherit;">
+    <div class="video-time">{{ scam.date.strftime('%Y-%m-%d') }}</div>
+    <div class="video-wrapper">
+      {% if scam.images %}
+      <div class="video">
+        <img class="card-img-top" src="{{ url_for('static', filename='img/' ~ scam.images[0].filename) }}" alt="">
+        <!-- <div class="video-time">00:00</div> -->
+      </div>
+      {% endif %}
+     <div class="author-img__wrapper video-author">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check">
+       <path d="M20 6L9 17l-5-5" />
+      </svg>
+      <img class="author-img" src="https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
+     </div>
+    </div>
+    <div class="video-by"></div>
+    <div class="video-name">{{ scam.title }}</div>
+    <!-- <div class="video-p-subtitle anim" style="--delay: .3s">
+      {{ scam.description[:50] }}...
+    </div> -->
+    <div class="video-view">
+      {% for tag in scam.tags %}
+      <a href="{{ url_for('index', tag_id=tag.id) }}">
+        <span class="badge badge-pill badge-primary">{{ tag.name }}</span></a>
+      <!-- <span class="seperate video-seperate"></span>1 week ago -->
+      {% endfor %}
+    </div>
+  </a>
+</div>
+{% endfor %}
+
+{% endblock %}

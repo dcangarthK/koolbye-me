@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            {% if scam.images %}
+            <img src="{{ url_for('static', filename='img/' + scam.images[0].filename) }}" alt="{{ scam.title }}" class="img-fluid mb-4">
+            {% endif %} 
+            <div class="card-body">
+                <h1 class="card-title">{{ scam.title }}</h1>
+                <hr>
+                <p class="card-text">{{ scam.description }}</p>
+                <p class="card-text"><strong>Category:</strong> {{ scam.category }}</p>
+                <p class="card-text"><strong>Tags:</strong>
+                    {% for tag in scam.tags.all %}
+                    <span class="badge badge-primary">{{ tag.name }}</span>
+                    {% endfor %}
+                </p>
+                <p class="card-text"><strong>Date:</strong> {{ scam.date.strftime('%Y-%m-%d %H:%M') }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
